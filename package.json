@@ -1,0 +1,62 @@
+{
+  "name": "jsdoc-markdown-mvp",
+  "displayName": "JSDoc Markdown MVP",
+  "description": "Highlights Markdown syntax inside JSDoc comments for JS/TS/JSX/TSX.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "grammars": [
+      {
+        "language": "javascript",
+        "scopeName": "injection.jsdoc.markdown",
+        "path": "./syntaxes/jsdoc-markdown.tmLanguage.json",
+        "injectTo": [
+          "source.js",
+          "source.ts",
+          "source.jsx",
+          "source.tsx"
+        ]
+      },
+      {
+        "language": "typescript",
+        "scopeName": "injection.jsdoc.markdown",
+        "path": "./syntaxes/jsdoc-markdown.tmLanguage.json",
+        "injectTo": [
+          "source.js",
+          "source.ts",
+          "source.jsx",
+          "source.tsx"
+        ]
+      },
+      {
+        "language": "javascriptreact",
+        "scopeName": "injection.jsdoc.markdown",
+        "path": "./syntaxes/jsdoc-markdown.tmLanguage.json",
+        "injectTo": [
+          "source.js",
+          "source.ts",
+          "source.jsx",
+          "source.tsx"
+        ]
+      },
+      {
+        "language": "typescriptreact",
+        "scopeName": "injection.jsdoc.markdown",
+        "path": "./syntaxes/jsdoc-markdown.tmLanguage.json",
+        "injectTo": [
+          "source.js",
+          "source.ts",
+          "source.jsx",
+          "source.tsx"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "JSDoc Markdown Injection",
+  "scopeName": "injection.jsdoc.markdown",
+  "injectionSelector": "L:comment.block.documentation -string -meta.embedded",
+  "patterns": [
+    {
+      "name": "meta.embedded.block.jsdoc-markdown",
+      "begin": "(?<=/\\*\\*)",
+      "end": "(?=\\*/)",
+      "patterns": [
+        {
+          "include": "text.html.markdown"
+        }
+      ]
+    }
+  ]
+}
