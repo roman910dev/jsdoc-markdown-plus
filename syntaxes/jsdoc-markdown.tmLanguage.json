@@ -7,7 +7,7 @@
 	],
 	"repository": {
 		"jsdocbody": {
-			"contentName": "text.html.markdown",
+			"contentName": "text.html.markdown meta.jsdoc.markdown",
 			"begin": "(?<=/\\*\\*)([^*]|\\*(?!/))*$",
 			"while": "(^|\\G)\\s*\\*(?!/)(?=([^*]|[*](?!/))*$)",
 			"patterns": [

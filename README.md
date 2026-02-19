@@ -27,7 +27,8 @@ It also adds optional runtime styling for JSDoc blocks:
 {
   "jsdocMarkdownStyle.enabled": true,
   "jsdocMarkdownStyle.backgroundColor": "rgba(128, 128, 128, 0.08)",
-  "jsdocMarkdownStyle.removeItalics": true
+  "jsdocMarkdownStyle.removeItalics": true,
+  "jsdocMarkdownStyle.baseForegroundColor": null
 }
 ```
 
@@ -60,3 +61,30 @@ Use a sample file and verify all items:
 3. Normal block comments are unchanged.
 4. Line comments are unchanged.
 5. Repeat in `.jsx` and `.tsx` files.
+
+
+## Optional base foreground color (without breaking Markdown token colors)
+
+To avoid overriding Markdown token-level colors, this extension does **not** set decoration `color`.
+Instead, target the injected JSDoc scope with theme token customization:
+
+```json
+{
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "meta.jsdoc.markdown",
+        "settings": {
+          "foreground": "#AABBCC",
+          "fontStyle": ""
+        }
+      }
+    ]
+  }
+}
+```
+
+Notes:
+- More specific Markdown scopes (inline code, headings, bold, links, etc.) still win, so their colors remain unchanged.
+- `jsdocMarkdownStyle.removeItalics` is still handled by editor decorations (`fontStyle: normal`).
+- `jsdocMarkdownStyle.baseForegroundColor` is a configuration hint to document this workflow; apply the actual color via `editor.tokenColorCustomizations`.

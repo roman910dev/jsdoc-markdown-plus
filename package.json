@@ -60,6 +60,14 @@
           "type": "boolean",
           "default": true,
           "description": "Render JSDoc text with normal font style to avoid inheriting comment italics."
+        },
+        "jsdocMarkdownStyle.baseForegroundColor": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "Optional base foreground color hint for JSDoc markdown text. Configure via editor.tokenColorCustomizations using scope meta.jsdoc.markdown."
         }
       }
     }
