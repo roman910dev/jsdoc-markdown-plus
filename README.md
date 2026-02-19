@@ -35,6 +35,7 @@ Notes:
 
 - Set `backgroundColor` to `null` or `""` to disable background fill.
 - Foreground token colors are untouched, so Markdown token coloring stays theme-driven.
+- JSDoc detection is a lightweight text scan (`/**` ... `*/`), so comment-like sequences inside strings may still be matched in edge cases.
 
 ## Scope behavior
 

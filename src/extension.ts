@@ -35,36 +35,49 @@ export function activate(context: vscode.ExtensionContext): void {
     pendingUpdates.set(key, timer);
   };
 
-  const activeEditor = vscode.window.activeTextEditor;
-  if (activeEditor) {
-    triggerUpdate(activeEditor);
-  }
+  const clearPendingTimerForDocument = (document: vscode.TextDocument): void => {
+    const key = document.uri.toString();
+    const timer = pendingUpdates.get(key);
+    if (timer) {
+      clearTimeout(timer);
+    }
+    pendingUpdates.delete(key);
+  };
+
+  const triggerUpdateForVisibleEditors = (document: vscode.TextDocument): void => {
+    for (const editor of vscode.window.visibleTextEditors) {
+      if (editor.document === document) {
+        triggerUpdate(editor);
+      }
+    }
+  };
+
+  const triggerUpdateForAllVisibleEditors = (): void => {
+    for (const editor of vscode.window.visibleTextEditors) {
+      triggerUpdate(editor);
+    }
+  };
+
+  triggerUpdateForAllVisibleEditors();
 
   context.subscriptions.push(
     vscode.window.onDidChangeActiveTextEditor((editor) => {
       triggerUpdate(editor);
     }),
     vscode.workspace.onDidChangeTextDocument((event) => {
-      const editor = vscode.window.activeTextEditor;
-      if (!editor || event.document !== editor.document) {
-        return;
-      }
-      triggerUpdate(editor);
+      triggerUpdateForVisibleEditors(event.document);
+    }),
+    vscode.workspace.onDidCloseTextDocument((document) => {
+      clearPendingTimerForDocument(document);
     }),
     vscode.workspace.onDidChangeConfiguration((event) => {
       if (!event.affectsConfiguration(CONFIG_NAMESPACE)) {
         return;
       }
 
-      if (decorationType) {
-        decorationType.dispose();
-      }
+      decorationType?.dispose();
       decorationType = createDecorationType();
-
-      const editor = vscode.window.activeTextEditor;
-      if (editor) {
-        triggerUpdate(editor);
-      }
+      triggerUpdateForAllVisibleEditors();
     })
   );
 
@@ -122,6 +135,14 @@ function findJSDocRanges(document: vscode.TextDocument): vscode.Range[] {
     const start = text.indexOf('/**', cursor);
     if (start === -1) {
       break;
+    }
+
+    if (start > 0) {
+      const previous = text[start - 1];
+      if (previous === '"' || previous === '\'' || previous === '`') {
+        cursor = start + 3;
+        continue;
+      }
     }
 
     const endToken = text.indexOf('*/', start + 3);
