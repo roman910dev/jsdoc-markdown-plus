@@ -98,7 +98,9 @@ function createDecorationType(): vscode.TextEditorDecorationType {
   const backgroundColor = normalizeString(config.get<string | null>('backgroundColor'));
   const removeItalics = config.get<boolean>('removeItalics', true);
 
-  const options: vscode.DecorationRenderOptions = {};
+  const options: vscode.DecorationRenderOptions = {
+    isWholeLine: true
+  };
   if (backgroundColor) {
     options.backgroundColor = backgroundColor;
   }
@@ -122,8 +124,21 @@ function applyDecorations(editor: vscode.TextEditor): void {
     return;
   }
 
-  const ranges = findJSDocRanges(editor.document);
-  editor.setDecorations(decorationType, ranges);
+  const blockRanges = findJSDocRanges(editor.document);
+  const lineRanges = expandToWholeLineRanges(editor.document, blockRanges);
+  editor.setDecorations(decorationType, lineRanges);
+}
+
+function expandToWholeLineRanges(document: vscode.TextDocument, blockRanges: vscode.Range[]): vscode.Range[] {
+  const lineRanges: vscode.Range[] = [];
+
+  for (const blockRange of blockRanges) {
+    for (let line = blockRange.start.line; line <= blockRange.end.line; line += 1) {
+      lineRanges.push(document.lineAt(line).range);
+    }
+  }
+
+  return lineRanges;
 }
 
 function findJSDocRanges(document: vscode.TextDocument): vscode.Range[] {
