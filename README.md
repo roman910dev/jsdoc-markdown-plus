@@ -16,90 +16,46 @@ Inside JSDoc comments, common Markdown constructs are highlighted using VS Code'
 - Emphasis: `*italic*`, `**bold**`
 - Links and lists
 
-## What it does not do (MVP limitations)
+It also adds optional runtime styling for JSDoc blocks:
 
-- No background color setting for JSDoc blocks.
-- No dimming setting for non-Markdown text.
-- No Markdown preview/hover changes.
-- No language server behavior changes.
-- No custom parser; this extension is grammar-injection only.
+- Background color for the full `/** ... */` range.
+- Optional comment-italics neutralization (`fontStyle: normal`) so Markdown reads like regular text.
+
+## Configuration
+
+```json
+{
+  "jsdocMarkdownStyle.enabled": true,
+  "jsdocMarkdownStyle.backgroundColor": "rgba(128, 128, 128, 0.08)",
+  "jsdocMarkdownStyle.removeItalics": true
+}
+```
+
+Notes:
+
+- Set `backgroundColor` to `null` or `""` to disable background fill.
+- Foreground token colors are untouched, so Markdown token coloring stays theme-driven.
 
 ## Scope behavior
 
-- ✅ `/** ... */` (JSDoc) receives Markdown highlighting.
+- ✅ `/** ... */` (JSDoc) receives Markdown highlighting and optional style decoration.
 - ❌ `/* ... */` (normal block comments) are unchanged.
 - ❌ `// ...` (line comments) are unchanged.
 
 ## Run locally (Extension Development Host)
 
 1. Open this folder in VS Code.
-2. Press `F5` to launch the Extension Development Host.
-3. In the Dev Host window, open a `.js`, `.ts`, `.jsx`, or `.tsx` file.
-4. Add a JSDoc block and verify Markdown highlighting appears only there.
+2. Run `npm install`.
+3. Run `npm run build`.
+4. Press `F5` to launch the Extension Development Host.
+5. In the Dev Host window, open a `.js`, `.ts`, `.jsx`, or `.tsx` file.
 
 ## Manual validation checklist
 
 Use a sample file and verify all items:
 
-1. JSDoc comment highlights Markdown:
-
-```ts
-/**
- * **bold** item
- * `inline code`
- * - list item
- * [link](https://example.com)
- */
-function demo() {}
-```
-
-2. Normal block comment is unchanged:
-
-```ts
-/* **bold** should stay plain comment-colored here */
-```
-
-3. Line comment is unchanged:
-
-```ts
-// `inline code` should stay plain comment-colored here
-```
-
-4. Repeat in `.jsx` and `.tsx` files.
-
-## Before/after screenshot instructions
-
-To document visual differences:
-
-1. Open the same file before enabling/installing this extension and capture a screenshot.
-2. Enable/install the extension, reload window, and capture the same region.
-3. Compare JSDoc sections only; non-JSDoc comments should look unchanged.
-
-## Optional color customization
-
-You can customize specific injected scopes in your `settings.json`:
-
-```json
-{
-  "editor.tokenColorCustomizations": {
-    "textMateRules": [
-      {
-        "scope": [
-          "meta.embedded.block.jsdoc-markdown markup.bold",
-          "meta.embedded.block.jsdoc-markdown markup.italic",
-          "meta.embedded.block.jsdoc-markdown markup.inline.raw",
-          "meta.embedded.block.jsdoc-markdown markup.fenced_code.block"
-        ],
-        "settings": {
-          "foreground": "#c586c0"
-        }
-      }
-    ]
-  }
-}
-```
-
-## Notes
-
-- This extension is intentionally minimal and contains no runtime activation code.
-- Cursor support is best-effort and depends on compatibility with standard VS Code extension grammar injection.
+1. JSDoc comment highlights Markdown and has background.
+2. JSDoc text is not italic when `removeItalics` is enabled.
+3. Normal block comments are unchanged.
+4. Line comments are unchanged.
+5. Repeat in `.jsx` and `.tsx` files.

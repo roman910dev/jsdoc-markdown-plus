@@ -1,28 +1,66 @@
 {
-	"name": "jsdoc-markdown-mvp",
-	"displayName": "JSDoc Markdown MVP",
-	"description": "Highlights Markdown syntax inside JSDoc comments for JS/TS/JSX/TSX.",
-	"version": "0.0.1",
-	"publisher": "local",
-	"license": "MIT",
-	"engines": {
-		"vscode": "^1.85.0"
-	},
-	"categories": [
-		"Programming Languages"
-	],
-	"contributes": {
-		"grammars": [
-			{
-				"scopeName": "injection.jsdoc.markdown",
-				"path": "./syntaxes/jsdoc-markdown.tmLanguage.json",
-				"injectTo": [
-					"source.js",
-					"source.ts",
-					"source.jsx",
-					"source.tsx"
-				]
-			}
-		]
-	}
+  "name": "jsdoc-markdown-mvp",
+  "displayName": "JSDoc Markdown MVP",
+  "description": "Highlights Markdown syntax inside JSDoc comments for JS/TS/JSX/TSX.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "license": "MIT",
+  "main": "./dist/extension.js",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact"
+  ],
+  "scripts": {
+    "build": "tsc -p .",
+    "watch": "tsc -watch -p ."
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.0"
+  },
+  "contributes": {
+    "grammars": [
+      {
+        "scopeName": "injection.jsdoc.markdown",
+        "path": "./syntaxes/jsdoc-markdown.tmLanguage.json",
+        "injectTo": [
+          "source.js",
+          "source.ts",
+          "source.jsx",
+          "source.tsx"
+        ]
+      }
+    ],
+    "configuration": {
+      "title": "JSDoc Markdown Style",
+      "properties": {
+        "jsdocMarkdownStyle.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable JSDoc block background and italics override styling."
+        },
+        "jsdocMarkdownStyle.backgroundColor": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": "rgba(128, 128, 128, 0.08)",
+          "description": "Background color for JSDoc blocks. Set to null or empty string to disable background."
+        },
+        "jsdocMarkdownStyle.removeItalics": {
+          "type": "boolean",
+          "default": true,
+          "description": "Render JSDoc text with normal font style to avoid inheriting comment italics."
+        }
+      }
+    }
+  }
 }
