@@ -8,6 +8,7 @@ const SUPPORTED_LANGUAGES = new Set([
 ]);
 
 const CONFIG_NAMESPACE = 'jsdocMarkdown';
+const APPEARANCE_NAMESPACE = `${CONFIG_NAMESPACE}.appearance`;
 const DEBOUNCE_MS = 150;
 
 let decorationType: vscode.TextEditorDecorationType | undefined;
@@ -94,8 +95,12 @@ export function activate(context: vscode.ExtensionContext): void {
 }
 
 function createDecorationType(): vscode.TextEditorDecorationType {
-  const config = vscode.workspace.getConfiguration(CONFIG_NAMESPACE);
-  const backgroundColor = normalizeString(config.get<string | null>('backgroundColor'));
+  const appearanceConfig = vscode.workspace.getConfiguration(APPEARANCE_NAMESPACE);
+  const legacyConfig = vscode.workspace.getConfiguration(CONFIG_NAMESPACE);
+
+  const backgroundColor =
+    normalizeString(appearanceConfig.get<string | null>('backgroundColor')) ??
+    normalizeString(legacyConfig.get<string | null>('backgroundColor'));
 
   const options: vscode.DecorationRenderOptions = {
     isWholeLine: true

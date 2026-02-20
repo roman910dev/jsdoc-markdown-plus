@@ -49,13 +49,22 @@
 		"configuration": {
 			"title": "JSDoc Markdown Plus",
 			"properties": {
-				"jsdocMarkdown.backgroundColor": {
+				"jsdocMarkdown.appearance.backgroundColor": {
 					"type": [
 						"string",
 						"null"
 					],
 					"default": "rgba(0, 0, 0, 0.1)",
 					"description": "Background color for JSDoc blocks. Set to null or empty string to disable background."
+				},
+				"jsdocMarkdown.backgroundColor": {
+					"type": [
+						"string",
+						"null"
+					],
+					"default": null,
+					"markdownDeprecationMessage": "Use `jsdocMarkdown.appearance.backgroundColor` instead.",
+					"description": "Deprecated. Use jsdocMarkdown.appearance.backgroundColor."
 				}
 			}
 		}
