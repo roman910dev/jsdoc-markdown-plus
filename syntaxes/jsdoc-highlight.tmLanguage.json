@@ -1,0 +1,55 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/refs/heads/master/tmlanguage.json",
+	"injectionSelector": "L:comment.block.documentation.ts",
+	"name": "meta.jsdoc.markdown",
+	"patterns": [
+		{ "include": "text.html.markdown#inline" },
+		{ "include": "#jsdocbody" }
+	],
+	"repository": {
+		"jsdocsingleline": {
+			"begin": ".",
+			"end": ".",
+			"match": "(?<=/\\*\\*)[^\\r\\n]*?(?=\\*/)",
+			"captures": {
+				"0": {
+					"name": "text.html.markdown meta.jsdoc.markdown",
+					"patterns": [{ "include": "text.html.markdown#inline" }]
+				}
+			},
+			"patterns": [{ "include": "text.html.markdown#inline" }]
+		},
+		"jsdocbody": {
+			"contentName": "text.html.markdown meta.jsdoc.markdown",
+			"begin": "(?<=/\\*\\*)([^*]|\\*(?!/))*$",
+			"while": "(^|\\G)\\s*(\\*|(/\\*\\*))(?!/)(?=([^*]|[*](?!/))*$)",
+			"whileCaptures": {
+				"0": { "name": "punctuation.definition.comment.jsdoc.leading" }
+			},
+			"patterns": [
+				{ "include": "text.html.markdown#fenced_code_block" },
+				{ "include": "#example" },
+				{ "include": "source.ts#docblock" },
+				{ "include": "text.html.markdown#inline" },
+				{ "include": "text.html.markdown#heading" },
+				{ "include": "text.html.markdown#lists" },
+				{ "include": "text.html.markdown#blockquote" }
+			]
+		},
+		"example": {
+			"begin": "((@)example)\\s+(?=([^*]|[*](?!/))*$).*$",
+			"while": "(^|\\G)\\s(?!@)(?=([^*]|[*](?!/))*$)",
+			"beginCaptures": {
+				"1": {
+					"name": "storage.type.class.jsdoc"
+				},
+				"2": {
+					"name": "punctuation.definition.block.tag.jsdoc"
+				}
+			},
+			"contentName": "meta.embedded.block.example.source.ts",
+			"patterns": [{ "include": "source.ts" }]
+		}
+	},
+	"scopeName": "documentation.injection.ts"
+}
