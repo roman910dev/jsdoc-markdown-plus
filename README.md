@@ -24,8 +24,7 @@ It also adds optional runtime background styling for JSDoc blocks:
 
 ```json
 {
-  "jsdocMarkdownStyle.enabled": true,
-  "jsdocMarkdownStyle.backgroundColor": "rgba(128, 128, 128, 0.08)"
+  "jsdocMarkdownStyle.backgroundColor": "rgba(0, 0, 0, 0.1)"
 }
 ```
 

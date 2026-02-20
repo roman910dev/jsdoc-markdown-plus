@@ -112,10 +112,7 @@ function applyDecorations(editor: vscode.TextEditor): void {
     return;
   }
 
-  const config = vscode.workspace.getConfiguration(CONFIG_NAMESPACE);
-  const enabled = config.get<boolean>('enabled', true);
-
-  if (!enabled || !SUPPORTED_LANGUAGES.has(editor.document.languageId)) {
+  if (!SUPPORTED_LANGUAGES.has(editor.document.languageId)) {
     editor.setDecorations(decorationType, []);
     return;
   }
