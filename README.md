@@ -66,7 +66,10 @@ Use a sample file and verify all items:
 ## Optional base foreground color (without breaking Markdown token colors)
 
 To avoid overriding Markdown token-level colors, this extension does **not** set decoration `color`.
-Instead, target the injected JSDoc scope with theme token customization:
+Instead, target the injected JSDoc scope with theme token customization.
+
+You can run the command **"JSDoc Markdown Style: Copy tokenColorCustomizations snippet"** (Command Palette) to copy a ready-to-paste JSON snippet that uses `jsdocMarkdownStyle.baseForegroundColor` when set.
+
 
 ```json
 {
@@ -87,4 +90,4 @@ Instead, target the injected JSDoc scope with theme token customization:
 Notes:
 - More specific Markdown scopes (inline code, headings, bold, links, etc.) still win, so their colors remain unchanged.
 - `jsdocMarkdownStyle.removeItalics` is still handled by editor decorations (`fontStyle: normal`).
-- `jsdocMarkdownStyle.baseForegroundColor` is a configuration hint to document this workflow; apply the actual color via `editor.tokenColorCustomizations`.
+- `jsdocMarkdownStyle.baseForegroundColor` is used as the foreground value in the copied snippet; apply the snippet via `editor.tokenColorCustomizations`.

@@ -81,6 +81,36 @@ export function activate(context: vscode.ExtensionContext): void {
     })
   );
 
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('jsdocMarkdownStyle.copyTokenColorCustomizationSnippet', async () => {
+      const configuredColor = normalizeString(
+        vscode.workspace.getConfiguration(CONFIG_NAMESPACE).get<string | null>('baseForegroundColor')
+      );
+      const foreground = configuredColor ?? '#AABBCC';
+      const snippet = JSON.stringify(
+        {
+          'editor.tokenColorCustomizations': {
+            textMateRules: [
+              {
+                scope: 'meta.jsdoc.markdown',
+                settings: {
+                  foreground,
+                  fontStyle: ''
+                }
+              }
+            ]
+          }
+        },
+        null,
+        2
+      );
+
+      await vscode.env.clipboard.writeText(snippet);
+      void vscode.window.showInformationMessage('Copied tokenColorCustomizations snippet for meta.jsdoc.markdown.');
+    })
+  );
+
   context.subscriptions.push({
     dispose: () => {
       for (const timer of pendingUpdates.values()) {

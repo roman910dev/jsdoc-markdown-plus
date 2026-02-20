@@ -2,6 +2,9 @@
 	"injectionSelector": "L:comment.block.documentation",
 	"patterns": [
 		{
+			"include": "#jsdocsingleline"
+		},
+		{
 			"include": "#jsdocbody"
 		}
 	],
@@ -145,6 +148,25 @@
 			"patterns": [
 				{
 					"include": "source.ts"
+				}
+			]
+		},
+		"jsdocsingleline": {
+			"begin": "/\\*\\*(?=[^\\n]*\\*/)",
+			"end": "\\*/",
+			"contentName": "text.html.markdown meta.jsdoc.markdown",
+			"patterns": [
+				{
+					"include": "text.html.markdown#fenced_code_block_js"
+				},
+				{
+					"include": "text.html.markdown#fenced_code_block_ts"
+				},
+				{
+					"include": "text.html.markdown#fenced_code_block_unknown"
+				},
+				{
+					"include": "text.html.markdown#inline"
 				}
 			]
 		}

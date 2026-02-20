@@ -16,7 +16,8 @@
     "onLanguage:javascript",
     "onLanguage:typescript",
     "onLanguage:javascriptreact",
-    "onLanguage:typescriptreact"
+    "onLanguage:typescriptreact",
+    "onCommand:jsdocMarkdownStyle.copyTokenColorCustomizationSnippet"
   ],
   "scripts": {
     "build": "tsc -p .",
@@ -70,6 +71,12 @@
           "description": "Optional base foreground color hint for JSDoc markdown text. Configure via editor.tokenColorCustomizations using scope meta.jsdoc.markdown."
         }
       }
-    }
+    },
+    "commands": [
+      {
+        "command": "jsdocMarkdownStyle.copyTokenColorCustomizationSnippet",
+        "title": "JSDoc Markdown Style: Copy tokenColorCustomizations snippet"
+      }
+    ]
   }
 }
