@@ -49,17 +49,12 @@
 		"configuration": {
 			"title": "JSDoc Markdown Style",
 			"properties": {
-				"jsdocMarkdownStyle.enabled": {
-					"type": "boolean",
-					"default": true,
-					"description": "Enable JSDoc block background styling."
-				},
 				"jsdocMarkdownStyle.backgroundColor": {
 					"type": [
 						"string",
 						"null"
 					],
-					"default": "rgba(128, 128, 128, 0.08)",
+					"default": "rgba(0, 0, 0, 0.1)",
 					"description": "Background color for JSDoc blocks. Set to null or empty string to disable background."
 				}
 			}
