@@ -16,26 +16,22 @@ Inside JSDoc comments, common Markdown constructs are highlighted using VS Code'
 - Emphasis: `*italic*`, `**bold**`
 - Links and lists
 
-It also adds optional runtime styling for JSDoc blocks:
+It also adds optional runtime background styling for JSDoc blocks:
 
 - Background color for the full `/** ... */` range.
-- Optional comment-italics neutralization (`fontStyle: normal`) so Markdown reads like regular text.
 
 ## Configuration
 
 ```json
 {
   "jsdocMarkdownStyle.enabled": true,
-  "jsdocMarkdownStyle.backgroundColor": "rgba(128, 128, 128, 0.08)",
-  "jsdocMarkdownStyle.removeItalics": true,
-  "jsdocMarkdownStyle.baseForegroundColor": null
+  "jsdocMarkdownStyle.backgroundColor": "rgba(128, 128, 128, 0.08)"
 }
 ```
 
 Notes:
 
 - Set `backgroundColor` to `null` or `""` to disable background fill.
-- Foreground token colors are untouched, so Markdown token coloring stays theme-driven.
 - JSDoc detection is a lightweight text scan (`/**` ... `*/`), so comment-like sequences inside strings may still be matched in edge cases.
 
 ## Scope behavior
@@ -57,19 +53,18 @@ Notes:
 Use a sample file and verify all items:
 
 1. JSDoc comment highlights Markdown and has background.
-2. JSDoc text is not italic when `removeItalics` is enabled.
-3. Normal block comments are unchanged.
-4. Line comments are unchanged.
-5. Repeat in `.jsx` and `.tsx` files.
+2. Normal block comments are unchanged.
+3. Line comments are unchanged.
+4. Repeat in `.jsx` and `.tsx` files.
 
 
-## Optional base foreground color (without breaking Markdown token colors)
+## Styling via token colors
 
-To avoid overriding Markdown token-level colors, this extension does **not** set decoration `color`.
-Instead, target the injected JSDoc scope with theme token customization.
+Foreground color and italics are best configured directly via `editor.tokenColorCustomizations`.
+Use these selectors:
 
-You can run the command **"JSDoc Markdown Style: Copy tokenColorCustomizations snippet"** (Command Palette) to copy a ready-to-paste JSON snippet that uses `jsdocMarkdownStyle.baseForegroundColor` when set.
-
+- `meta.jsdoc.markdown`: base JSDoc markdown text color/style.
+- `punctuation.definition.comment.jsdoc.leading`: the leading `*` markers in multi-line JSDoc blocks.
 
 ```json
 {
@@ -81,6 +76,12 @@ You can run the command **"JSDoc Markdown Style: Copy tokenColorCustomizations s
           "foreground": "#AABBCC",
           "fontStyle": ""
         }
+      },
+      {
+        "scope": "punctuation.definition.comment.jsdoc.leading",
+        "settings": {
+          "foreground": "#6A737D"
+        }
       }
     ]
   }
@@ -88,6 +89,5 @@ You can run the command **"JSDoc Markdown Style: Copy tokenColorCustomizations s
 ```
 
 Notes:
+- Set `fontStyle` to `""` to remove italics.
 - More specific Markdown scopes (inline code, headings, bold, links, etc.) still win, so their colors remain unchanged.
-- `jsdocMarkdownStyle.removeItalics` is still handled by editor decorations (`fontStyle: normal`).
-- `jsdocMarkdownStyle.baseForegroundColor` is used as the foreground value in the copied snippet; apply the snippet via `editor.tokenColorCustomizations`.
