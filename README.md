@@ -24,14 +24,13 @@ It also adds optional runtime background styling for JSDoc blocks:
 
 ```json
 {
-  "jsdocMarkdown.appearance.backgroundColor": "rgba(0, 0, 0, 0.1)"
+  "jsdocMarkdownPlus.backgroundColor": "rgba(0, 0, 0, 0.1)"
 }
 ```
 
 Notes:
 
 - Set `backgroundColor` to `null` or `""` to disable background fill.
-- Legacy key `jsdocMarkdown.backgroundColor` is still supported for backward compatibility, but `jsdocMarkdown.appearance.backgroundColor` is the canonical setting.
 - JSDoc detection is a lightweight text scan (`/**` ... `*/`), so comment-like sequences inside strings may still be matched in edge cases.
 
 ## Scope behavior
@@ -63,22 +62,22 @@ Use a sample file and verify all items:
 Foreground color and italics are best configured directly via `editor.tokenColorCustomizations`.
 Use these selectors:
 
-- `meta.jsdocMarkdown.plus` (alias of `meta.jsdoc.markdown`): base JSDoc markdown text color/style.
-- `punctuation.definition.comment.jsdocMarkdown.plus.leading` (alias of `punctuation.definition.comment.jsdoc.leading`): the leading `*` markers in multi-line JSDoc blocks.
+- `meta.jsdocMarkdownPlus`: base JSDoc markdown text color/style.
+- `punctuation.definition.comment.jsdocMarkdownPlus.leading`: the leading `*` markers in multi-line JSDoc blocks.
 
 ```json
 {
   "editor.tokenColorCustomizations": {
     "textMateRules": [
       {
-        "scope": "meta.jsdocMarkdown.plus",
+        "scope": "meta.jsdocMarkdownPlus",
         "settings": {
           "foreground": "#AABBCC",
           "fontStyle": ""
         }
       },
       {
-        "scope": "punctuation.definition.comment.jsdocMarkdown.plus.leading",
+        "scope": "punctuation.definition.comment.jsdocMarkdownPlus.leading",
         "settings": {
           "foreground": "#6A737D"
         }

@@ -1,15 +1,15 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/refs/heads/master/tmlanguage.json",
 	"injectionSelector": "L:comment.block.documentation.js",
-	"name": "meta.jsdoc.markdown meta.jsdocMarkdown.plus",
+	"name": "meta.jsdocMarkdownPlus",
 	"patterns": [{ "include": "#jsdocbody" }],
 	"repository": {
 		"jsdocbody": {
-			"contentName": "text.html.markdown meta.jsdoc.markdown meta.jsdocMarkdown.plus",
+			"contentName": "text.html.markdown meta.jsdocMarkdownPlus",
 			"begin": "(?<=/\\*\\*)([^*]|\\*(?!/))*$",
 			"while": "(^|\\G)\\s*(\\*|(/\\*\\*))(?!/)(?=([^*]|[*](?!/))*$)",
 			"whileCaptures": {
-				"0": { "name": "punctuation.definition.comment.jsdoc.leading punctuation.definition.comment.jsdocMarkdown.plus.leading" }
+				"0": { "name": "punctuation.definition.comment.jsdocMarkdownPlus.leading" }
 			},
 			"patterns": [
 				{ "include": "text.html.markdown#fenced_code_block" },
