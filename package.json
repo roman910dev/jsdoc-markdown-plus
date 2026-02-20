@@ -16,8 +16,7 @@
 		"onLanguage:javascript",
 		"onLanguage:typescript",
 		"onLanguage:javascriptreact",
-		"onLanguage:typescriptreact",
-		"onCommand:jsdocMarkdownStyle.copyTokenColorCustomizationSnippet"
+		"onLanguage:typescriptreact"
 	],
 	"scripts": {
 		"build": "tsc -p .",
@@ -53,7 +52,7 @@
 				"jsdocMarkdownStyle.enabled": {
 					"type": "boolean",
 					"default": true,
-					"description": "Enable JSDoc block background and italics override styling."
+					"description": "Enable JSDoc block background styling."
 				},
 				"jsdocMarkdownStyle.backgroundColor": {
 					"type": [
@@ -62,27 +61,8 @@
 					],
 					"default": "rgba(128, 128, 128, 0.08)",
 					"description": "Background color for JSDoc blocks. Set to null or empty string to disable background."
-				},
-				"jsdocMarkdownStyle.removeItalics": {
-					"type": "boolean",
-					"default": true,
-					"description": "Render JSDoc text with normal font style to avoid inheriting comment italics."
-				},
-				"jsdocMarkdownStyle.baseForegroundColor": {
-					"type": [
-						"string",
-						"null"
-					],
-					"default": null,
-					"description": "Optional base foreground color hint for JSDoc markdown text. Configure via editor.tokenColorCustomizations using scope meta.jsdoc.markdown."
 				}
 			}
-		},
-		"commands": [
-			{
-				"command": "jsdocMarkdownStyle.copyTokenColorCustomizationSnippet",
-				"title": "JSDoc Markdown Style: Copy tokenColorCustomizations snippet"
-			}
-		]
+		}
 	}
 }

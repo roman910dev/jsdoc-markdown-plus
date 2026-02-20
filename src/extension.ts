@@ -81,36 +81,6 @@ export function activate(context: vscode.ExtensionContext): void {
     })
   );
 
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand('jsdocMarkdownStyle.copyTokenColorCustomizationSnippet', async () => {
-      const configuredColor = normalizeString(
-        vscode.workspace.getConfiguration(CONFIG_NAMESPACE).get<string | null>('baseForegroundColor')
-      );
-      const foreground = configuredColor ?? '#AABBCC';
-      const snippet = JSON.stringify(
-        {
-          'editor.tokenColorCustomizations': {
-            textMateRules: [
-              {
-                scope: 'meta.jsdoc.markdown',
-                settings: {
-                  foreground,
-                  fontStyle: ''
-                }
-              }
-            ]
-          }
-        },
-        null,
-        2
-      );
-
-      await vscode.env.clipboard.writeText(snippet);
-      void vscode.window.showInformationMessage('Copied tokenColorCustomizations snippet for meta.jsdoc.markdown.');
-    })
-  );
-
   context.subscriptions.push({
     dispose: () => {
       for (const timer of pendingUpdates.values()) {
@@ -126,16 +96,12 @@ export function activate(context: vscode.ExtensionContext): void {
 function createDecorationType(): vscode.TextEditorDecorationType {
   const config = vscode.workspace.getConfiguration(CONFIG_NAMESPACE);
   const backgroundColor = normalizeString(config.get<string | null>('backgroundColor'));
-  const removeItalics = config.get<boolean>('removeItalics', true);
 
   const options: vscode.DecorationRenderOptions = {
     isWholeLine: true
   };
   if (backgroundColor) {
     options.backgroundColor = backgroundColor;
-  }
-  if (removeItalics) {
-    options.fontStyle = 'normal';
   }
 
   return vscode.window.createTextEditorDecorationType(options);
