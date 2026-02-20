@@ -1,4 +1,4 @@
-# JSDoc Markdown MVP
+# JSDoc Markdown Plus
 
 A minimal VS Code extension that injects Markdown syntax highlighting **only** inside JSDoc block comments (`/** ... */`) for:
 
@@ -24,7 +24,7 @@ It also adds optional runtime background styling for JSDoc blocks:
 
 ```json
 {
-  "jsdocMarkdownStyle.backgroundColor": "rgba(0, 0, 0, 0.1)"
+  "jsdocMarkdown.backgroundColor": "rgba(0, 0, 0, 0.1)"
 }
 ```
 

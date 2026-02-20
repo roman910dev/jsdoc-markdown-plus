@@ -7,7 +7,7 @@ const SUPPORTED_LANGUAGES = new Set([
   'typescriptreact'
 ]);
 
-const CONFIG_NAMESPACE = 'jsdocMarkdownStyle';
+const CONFIG_NAMESPACE = 'jsdocMarkdown';
 const DEBOUNCE_MS = 150;
 
 let decorationType: vscode.TextEditorDecorationType | undefined;
