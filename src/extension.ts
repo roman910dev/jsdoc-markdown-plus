@@ -129,7 +129,14 @@ function expandToWholeLineRanges(document: vscode.TextDocument, blockRanges: vsc
   const lineRanges: vscode.Range[] = [];
 
   for (const blockRange of blockRanges) {
-    for (let line = blockRange.start.line; line <= blockRange.end.line; line += 1) {
+    const firstContentLine = blockRange.start.line + 1;
+    const lastContentLine = blockRange.end.line - 1;
+
+    if (firstContentLine > lastContentLine) {
+      continue;
+    }
+
+    for (let line = firstContentLine; line <= lastContentLine; line += 1) {
       lineRanges.push(document.lineAt(line).range);
     }
   }
