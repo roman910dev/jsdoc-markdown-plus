@@ -1,26 +1,75 @@
 # JSDoc Markdown Plus
 
-A minimal VS Code extension that injects Markdown syntax highlighting **only** inside JSDoc block comments (`/** ... */`) for:
+Documentation matters.
+
+Not just as an afterthought, not buried in separate files that nobody opens, and not faded away by themes that make comments barely visible. Especially now, when humans and AI agents alike rely on code context to understand _why_ something exists before diving into _how_ it works.
+
+**JSDoc Markdown Plus** exists to give documentation the relevance it deserves — directly inside your code.
+
+It highlights Markdown syntax **only inside JSDoc comments** (`/** ... */`), and optionally places them on a subtle background, making documentation clearly readable, visually distinct, and intentionally separate from executable code.
+
+<!-- 📸 INSERT IMAGE HERE -->
+<!-- Place a screenshot here showing a JSDoc block with Markdown highlighting and background enabled.
+     Put it right after the intro so users see the value immediately. -->
+
+## What this extension does
+
+Inside JSDoc block comments, Markdown syntax is highlighted using VS Code’s built-in Markdown grammar.
+
+This includes:
+
+- Inline code: `` `code` ``
+- Fenced code blocks:
+    ````markdown
+    ```ts
+    const x: string = 'hello'
+    ```
+    ````
+- Emphasis: `*italic*`, `**bold**`
+- Headings, lists, and links
+
+Outside of JSDoc blocks, **nothing changes**.
+
+- `/* ... */` normal block comments are untouched
+- `// ...` line comments are untouched
+
+## What it does not do
+
+- It does not modify normal comments
+- It does not change code highlighting
+- It does not add a new Markdown renderer
+- It does not parse or validate JSDoc syntax
+
+This extension is intentionally minimal and focused.
+
+## Why a background?
+
+Documentation is not code — and it shouldn’t visually compete with it.
+
+The optional background makes JSDoc blocks:
+
+- Easy to spot while scanning a file
+- Clearly separated from logic
+- Instantly recognizable as “documentation, not implementation”
+
+This is especially helpful when:
+
+- Onboarding to a new codebase
+- Reviewing unfamiliar logic
+- Working with AI agents that benefit from high-level explanations
+
+## Supported languages
 
 - JavaScript (`.js`, `.mjs`, `.cjs`)
 - TypeScript (`.ts`)
 - JavaScript React (`.jsx`)
 - TypeScript React (`.tsx`)
 
-## What it does
-
-Inside JSDoc comments, common Markdown constructs are highlighted using VS Code's built-in Markdown TextMate grammar, including:
-
-- Inline code: `` `code` ``
-- Fenced code blocks: ` ```ts `
-- Emphasis: `*italic*`, `**bold**`
-- Links and lists
-
-It also adds optional runtime background styling for JSDoc blocks:
-
-- Background color for the full `/** ... */` range.
-
 ## Configuration
+
+### Background styling (optional)
+
+You can enable or customize the background color used for JSDoc blocks:
 
 ```json
 {
@@ -30,39 +79,26 @@ It also adds optional runtime background styling for JSDoc blocks:
 
 Notes:
 
-- Set `backgroundColor` to `null` or `""` to disable background fill.
-- JSDoc detection is a lightweight text scan (`/**` ... `*/`), so comment-like sequences inside strings may still be matched in edge cases.
+- Set `backgroundColor` to `null` or `""` to disable the background entirely
+- The background applies to the full `/** ... */` range
 
-## Scope behavior
+## Customizing text colors and style
 
-- ✅ `/** ... */` (JSDoc) receives Markdown highlighting and optional style decoration.
-- ❌ `/* ... */` (normal block comments) are unchanged.
-- ❌ `// ...` (line comments) are unchanged.
+This extension intentionally does **not** override your theme’s Markdown colors.
 
-## Run locally (Extension Development Host)
+Instead, styling is controlled via standard VS Code token customization so that:
 
-1. Open this folder in VS Code.
-2. Run `npm install`.
-3. Run `npm run build`.
-4. Press `F5` to launch the Extension Development Host.
-5. In the Dev Host window, open a `.js`, `.ts`, `.jsx`, or `.tsx` file.
+- Markdown elements (code, headings, links, etc.) keep their existing theme colors
+- You can remove italics or tweak colors without breaking syntax highlighting
 
-## Manual validation checklist
+### Available scopes
 
-Use a sample file and verify all items:
+- `meta.jsdocMarkdownPlus`  
+  Base scope for JSDoc Markdown text
+- `punctuation.definition.comment.jsdocMarkdownPlus.leading`  
+  Leading `*` characters in multi-line JSDoc blocks
 
-1. JSDoc comment highlights Markdown and has background.
-2. Normal block comments are unchanged.
-3. Line comments are unchanged.
-4. Repeat in `.jsx` and `.tsx` files.
-
-## Styling via token colors
-
-Foreground color and italics are best configured directly via `editor.tokenColorCustomizations`.
-Use these selectors:
-
-- `meta.jsdocMarkdownPlus`: base JSDoc markdown text color/style.
-- `punctuation.definition.comment.jsdocMarkdownPlus.leading`: the leading `*` markers in multi-line JSDoc blocks.
+### Example customization
 
 ```json
 {
@@ -88,5 +124,5 @@ Use these selectors:
 
 Notes:
 
-- Set `fontStyle` to `""` to remove italics.
-- More specific Markdown scopes (inline code, headings, bold, links, etc.) still win, so their colors remain unchanged.
+- Set `fontStyle` to `""` to remove italics
+- More specific Markdown scopes (inline code, headings, bold, links, etc.) still take precedence
