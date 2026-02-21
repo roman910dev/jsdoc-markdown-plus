@@ -2,14 +2,39 @@
 	"name": "jsdoc-markdown-plus",
 	"displayName": "JSDoc Markdown Plus",
 	"description": "Highlights Markdown syntax inside JSDoc comments for JS/TS/JSX/TSX.",
-	"version": "0.0.1",
-	"publisher": "local",
+	"version": "0.1.0",
+	"publisher": "roman910dev",
+	"icon": "images/icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/roman910dev/jsdoc-markdown-plus.git"
+	},
+	"homepage": "https://github.com/roman910dev/jsdoc-markdown-plus#readme",
+	"bugs": {
+		"url": "https://github.com/roman910dev/jsdoc-markdown-plus/issues"
+	},
 	"license": "MIT",
 	"type": "module",
 	"main": "./dist/extension.js",
+	"files": [
+		"dist/**",
+		"syntaxes/**",
+		"images/**",
+		"CHANGELOG.md",
+		"README.md",
+		"LICENSE"
+	],
 	"engines": {
 		"vscode": "^1.85.0"
 	},
+	"keywords": [
+		"jsdoc",
+		"markdown",
+		"typescript",
+		"javascript",
+		"syntax-highlighting",
+		"textmate"
+	],
 	"categories": [
 		"Programming Languages"
 	],
