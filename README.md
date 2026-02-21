@@ -12,7 +12,7 @@ A minimal VS Code extension that injects Markdown syntax highlighting **only** i
 Inside JSDoc comments, common Markdown constructs are highlighted using VS Code's built-in Markdown TextMate grammar, including:
 
 - Inline code: `` `code` ``
-- Fenced code blocks: ```` ```ts ````
+- Fenced code blocks: ` ```ts `
 - Emphasis: `*italic*`, `**bold**`
 - Links and lists
 
@@ -24,7 +24,7 @@ It also adds optional runtime background styling for JSDoc blocks:
 
 ```json
 {
-  "jsdocMarkdownPlus.backgroundColor": "rgba(0, 0, 0, 0.1)"
+	"jsdocMarkdownPlus.backgroundColor": "rgba(0, 0, 0, 0.1)"
 }
 ```
 
@@ -56,7 +56,6 @@ Use a sample file and verify all items:
 3. Line comments are unchanged.
 4. Repeat in `.jsx` and `.tsx` files.
 
-
 ## Styling via token colors
 
 Foreground color and italics are best configured directly via `editor.tokenColorCustomizations`.
@@ -67,26 +66,27 @@ Use these selectors:
 
 ```json
 {
-  "editor.tokenColorCustomizations": {
-    "textMateRules": [
-      {
-        "scope": "meta.jsdocMarkdownPlus",
-        "settings": {
-          "foreground": "#AABBCC",
-          "fontStyle": ""
-        }
-      },
-      {
-        "scope": "punctuation.definition.comment.jsdocMarkdownPlus.leading",
-        "settings": {
-          "foreground": "#6A737D"
-        }
-      }
-    ]
-  }
+	"editor.tokenColorCustomizations": {
+		"textMateRules": [
+			{
+				"scope": "meta.jsdocMarkdownPlus",
+				"settings": {
+					"foreground": "#AABBCC",
+					"fontStyle": ""
+				}
+			},
+			{
+				"scope": "punctuation.definition.comment.jsdocMarkdownPlus.leading",
+				"settings": {
+					"foreground": "#6A737D"
+				}
+			}
+		]
+	}
 }
 ```
 
 Notes:
+
 - Set `fontStyle` to `""` to remove italics.
 - More specific Markdown scopes (inline code, headings, bold, links, etc.) still win, so their colors remain unchanged.
