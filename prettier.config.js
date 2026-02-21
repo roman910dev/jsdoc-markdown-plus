@@ -1,4 +1,4 @@
-/** @type {import("prettier").PrettierConfig} */
+/** @type {import("prettier").Config} */
 export default {
 	useTabs: true,
 	tabWidth: 4,
