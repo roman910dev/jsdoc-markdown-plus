@@ -1,0 +1,48 @@
+lockfileVersion: '9.0'
+
+settings:
+    autoInstallPeers: true
+    excludeLinksFromLockfile: false
+
+importers:
+    .:
+        devDependencies:
+            '@types/vscode':
+                specifier: ^1.85.0
+                version: 1.109.0
+            prettier:
+                specifier: ^3.8.1
+                version: 3.8.1
+            typescript:
+                specifier: ^5.4.0
+                version: 5.9.3
+
+packages:
+    '@types/vscode@1.109.0':
+        resolution:
+            {
+                integrity: sha512-0Pf95rnwEIwDbmXGC08r0B4TQhAbsHQ5UyTIgVgoieDe4cOnf92usuR5dEczb6bTKEp7ziZH4TV1TRGPPCExtw==,
+            }
+
+    prettier@3.8.1:
+        resolution:
+            {
+                integrity: sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==,
+            }
+        engines: { node: '>=14' }
+        hasBin: true
+
+    typescript@5.9.3:
+        resolution:
+            {
+                integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==,
+            }
+        engines: { node: '>=14.17' }
+        hasBin: true
+
+snapshots:
+    '@types/vscode@1.109.0': {}
+
+    prettier@3.8.1: {}
+
+    typescript@5.9.3: {}
