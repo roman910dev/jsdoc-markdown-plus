@@ -1,6 +1,6 @@
 {
-	"name": "jsdoc-markdown-mvp",
-	"displayName": "JSDoc Markdown MVP",
+	"name": "jsdoc-markdown-plus",
+	"displayName": "JSDoc Markdown Plus",
 	"description": "Highlights Markdown syntax inside JSDoc comments for JS/TS/JSX/TSX.",
 	"version": "0.0.1",
 	"publisher": "local",
@@ -47,9 +47,9 @@
 			}
 		],
 		"configuration": {
-			"title": "JSDoc Markdown Style",
+			"title": "JSDoc Markdown Plus",
 			"properties": {
-				"jsdocMarkdownStyle.backgroundColor": {
+				"jsdocMarkdownPlus.backgroundColor": {
 					"type": [
 						"string",
 						"null"

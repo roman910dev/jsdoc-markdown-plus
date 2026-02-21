@@ -1,4 +1,4 @@
-# JSDoc Markdown MVP
+# JSDoc Markdown Plus
 
 A minimal VS Code extension that injects Markdown syntax highlighting **only** inside JSDoc block comments (`/** ... */`) for:
 
@@ -24,7 +24,7 @@ It also adds optional runtime background styling for JSDoc blocks:
 
 ```json
 {
-  "jsdocMarkdownStyle.backgroundColor": "rgba(0, 0, 0, 0.1)"
+  "jsdocMarkdownPlus.backgroundColor": "rgba(0, 0, 0, 0.1)"
 }
 ```
 
@@ -62,22 +62,22 @@ Use a sample file and verify all items:
 Foreground color and italics are best configured directly via `editor.tokenColorCustomizations`.
 Use these selectors:
 
-- `meta.jsdoc.markdown`: base JSDoc markdown text color/style.
-- `punctuation.definition.comment.jsdoc.leading`: the leading `*` markers in multi-line JSDoc blocks.
+- `meta.jsdocMarkdownPlus`: base JSDoc markdown text color/style.
+- `punctuation.definition.comment.jsdocMarkdownPlus.leading`: the leading `*` markers in multi-line JSDoc blocks.
 
 ```json
 {
   "editor.tokenColorCustomizations": {
     "textMateRules": [
       {
-        "scope": "meta.jsdoc.markdown",
+        "scope": "meta.jsdocMarkdownPlus",
         "settings": {
           "foreground": "#AABBCC",
           "fontStyle": ""
         }
       },
       {
-        "scope": "punctuation.definition.comment.jsdoc.leading",
+        "scope": "punctuation.definition.comment.jsdocMarkdownPlus.leading",
         "settings": {
           "foreground": "#6A737D"
         }
