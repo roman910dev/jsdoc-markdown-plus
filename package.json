@@ -1,14 +1,40 @@
 {
 	"name": "jsdoc-markdown-plus",
 	"displayName": "JSDoc Markdown Plus",
-	"description": "Highlights Markdown syntax inside JSDoc comments for JS/TS/JSX/TSX.",
-	"version": "0.0.1",
-	"publisher": "local",
+	"description": "Makes JSDoc comments readable and first-class by highlighting Markdown syntax and adding a subtle background — without affecting normal comments or code.",
+	"version": "0.1.0",
+	"publisher": "roman910dev",
+	"icon": "images/icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/roman910dev/jsdoc-markdown-plus.git"
+	},
+	"homepage": "https://github.com/roman910dev/jsdoc-markdown-plus#readme",
+	"bugs": {
+		"url": "https://github.com/roman910dev/jsdoc-markdown-plus/issues"
+	},
 	"license": "MIT",
+	"type": "module",
 	"main": "./dist/extension.js",
+	"files": [
+		"dist/**",
+		"syntaxes/**",
+		"images/**",
+		"CHANGELOG.md",
+		"README.md",
+		"LICENSE"
+	],
 	"engines": {
 		"vscode": "^1.85.0"
 	},
+	"keywords": [
+		"jsdoc",
+		"markdown",
+		"typescript",
+		"javascript",
+		"syntax-highlighting",
+		"textmate"
+	],
 	"categories": [
 		"Programming Languages"
 	],
@@ -20,11 +46,14 @@
 	],
 	"scripts": {
 		"build": "tsc -p .",
+		"package": "vsce package",
 		"watch": "tsc -watch -p .",
-		"vscode:prepublish": "npm run build"
+		"vscode:prepublish": "pnpm build"
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.85.0",
+		"@vscode/vsce": "^3.7.1",
+		"prettier": "^3.8.1",
 		"typescript": "^5.4.0"
 	},
 	"contributes": {
@@ -54,7 +83,7 @@
 						"string",
 						"null"
 					],
-					"default": "rgba(0, 0, 0, 0.1)",
+					"default": "rgba(0, 0, 0, 0.15)",
 					"description": "Background color for JSDoc blocks. Set to null or empty string to disable background."
 				}
 			}

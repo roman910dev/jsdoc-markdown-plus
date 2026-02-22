@@ -9,7 +9,9 @@
 			"begin": "(?<=/\\*\\*)([^*]|\\*(?!/))*$",
 			"while": "(^|\\G)\\s*(\\*|(/\\*\\*))(?!/)(?=([^*]|[*](?!/))*$)",
 			"whileCaptures": {
-				"0": { "name": "punctuation.definition.comment.jsdocMarkdownPlus.leading" }
+				"0": {
+					"name": "punctuation.definition.comment.jsdocMarkdownPlus.leading"
+				}
 			},
 			"patterns": [
 				{ "include": "text.html.markdown#fenced_code_block" },
