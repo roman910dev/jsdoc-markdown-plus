@@ -49,7 +49,7 @@ jobs:
               id: package
               uses: HaaLeo/publish-vscode-extension@v2
               with:
-                  pat: ''
+                  pat: 'dry-run'
                   dryRun: true
 
             - name: Publish to VS Code Marketplace
