@@ -83,7 +83,7 @@
 						"string",
 						"null"
 					],
-					"default": "rgba(0, 0, 0, 0.1)",
+					"default": "rgba(0, 0, 0, 0.15)",
 					"description": "Background color for JSDoc blocks. Set to null or empty string to disable background."
 				}
 			}

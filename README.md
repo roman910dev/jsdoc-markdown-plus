@@ -71,7 +71,7 @@ You can enable or customize the background color used for JSDoc blocks:
 
 ```json
 {
-	"jsdocMarkdownPlus.backgroundColor": "rgba(0, 0, 0, 0.1)"
+	"jsdocMarkdownPlus.backgroundColor": "rgba(0, 0, 0, 0.15)"
 }
 ```
 
