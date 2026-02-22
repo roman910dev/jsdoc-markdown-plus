@@ -1,7 +1,7 @@
 {
 	"name": "jsdoc-markdown-plus",
 	"displayName": "JSDoc Markdown Plus",
-	"description": "Highlights Markdown syntax inside JSDoc comments for JS/TS/JSX/TSX.",
+	"description": "Makes JSDoc comments readable and first-class by highlighting Markdown syntax and adding a subtle background — without affecting normal comments or code.",
 	"version": "0.1.0",
 	"publisher": "roman910dev",
 	"icon": "images/icon.png",
