@@ -1,0 +1,19 @@
+{
+	"editor.tokenColorCustomizations": {
+		"textMateRules": [
+			{
+				"scope": "meta.jsdocMarkdownPlus",
+				"settings": {
+					"foreground": "#aabbccdd",
+					"fontStyle": ""
+				}
+			},
+			{
+				"scope": "punctuation.definition.comment.jsdocMarkdownPlus.leading",
+				"settings": {
+					"foreground": "#6a737d83"
+				}
+			}
+		]
+	}
+}
