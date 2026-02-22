@@ -8,9 +8,7 @@ Not just as an afterthought, not buried in separate files that nobody opens, and
 
 It highlights Markdown syntax **only inside JSDoc comments** (`/** ... */`), and optionally places them on a subtle background, making documentation clearly readable, visually distinct, and intentionally separate from executable code.
 
-<!-- 📸 INSERT IMAGE HERE -->
-<!-- Place a screenshot here showing a JSDoc block with Markdown highlighting and background enabled.
-     Put it right after the intro so users see the value immediately. -->
+![JSDoc Markdown Plus](./images/screenshot.png)
 
 ## What this extension does
 
