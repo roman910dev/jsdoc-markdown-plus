@@ -85,6 +85,11 @@
 					],
 					"default": "rgba(0, 0, 0, 0.15)",
 					"description": "Background color for JSDoc blocks. Set to null or empty string to disable background."
+				},
+				"jsdocMarkdownPlus.backgroundIncludeDelimiterLines": {
+					"type": "boolean",
+					"default": false,
+					"description": "Apply background to the first and last JSDoc lines (`/**` and `*/`) in addition to inner content lines."
 				}
 			}
 		}

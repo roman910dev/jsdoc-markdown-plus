@@ -103,21 +103,34 @@ function applyDecorations(editor: vscode.TextEditor): void {
 		return
 	}
 
+	const config = vscode.workspace.getConfiguration(CONFIG_NAMESPACE)
+	const includeDelimiterLines = config.get<boolean>(
+		'backgroundIncludeDelimiterLines',
+		false,
+	)
 	const blockRanges = findJSDocRanges(editor.document)
-	const lineRanges = expandToWholeLineRanges(editor.document, blockRanges)
+	const lineRanges = expandToWholeLineRanges(
+		editor.document,
+		blockRanges,
+		includeDelimiterLines,
+	)
 	editor.setDecorations(decorationType, lineRanges)
 }
 
 function expandToWholeLineRanges(
 	document: vscode.TextDocument,
 	blockRanges: vscode.Range[],
+	includeDelimiterLines: boolean,
 ): vscode.Range[] {
 	const lineRanges: vscode.Range[] = []
 
 	for (const blockRange of blockRanges) {
-		const firstContentLine = blockRange.start.line + 1
-		const lastContentLine = blockRange.end.line - 1
+		if (blockRange.start.line === blockRange.end.line) continue // we don't yet support single-line jsdocs
 
+		const offset = includeDelimiterLines ? 1 : 0
+
+		const firstContentLine = blockRange.start.line + offset
+		const lastContentLine = blockRange.end.line - offset
 		if (firstContentLine > lastContentLine) continue
 
 		for (let line = firstContentLine; line <= lastContentLine; line += 1)
