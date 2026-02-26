@@ -88,7 +88,7 @@
 				},
 				"jsdocMarkdownPlus.backgroundIncludeDelimiterLines": {
 					"type": "boolean",
-					"default": false,
+					"default": true,
 					"description": "Apply background to the first and last JSDoc lines (`/**` and `*/`) in addition to inner content lines."
 				}
 			}

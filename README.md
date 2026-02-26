@@ -72,15 +72,14 @@ You can enable or customize the background color used for JSDoc blocks:
 ```json
 {
 	"jsdocMarkdownPlus.backgroundColor": "rgba(0, 0, 0, 0.15)",
-	"jsdocMarkdownPlus.backgroundIncludeDelimiterLines": true
+	"jsdocMarkdownPlus.backgroundIncludeDelimiterLines": false
 }
 ```
 
 Notes:
 
 - Set `backgroundColor` to `null` or `""` to disable the background entirely
-- Set `backgroundIncludeDelimiterLines` to `true` to include `/**` and `*/` lines
-- By default, the background applies to inner JSDoc content lines only
+- Set `backgroundIncludeDelimiterLines` to `false` to not include `/**` and `*/` lines
 
 ## Customizing text colors and style
 

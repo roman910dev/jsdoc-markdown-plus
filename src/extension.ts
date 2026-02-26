@@ -106,7 +106,7 @@ function applyDecorations(editor: vscode.TextEditor): void {
 	const config = vscode.workspace.getConfiguration(CONFIG_NAMESPACE)
 	const includeDelimiterLines = config.get<boolean>(
 		'backgroundIncludeDelimiterLines',
-		false,
+		true,
 	)
 	const blockRanges = findJSDocRanges(editor.document)
 	const lineRanges = expandToWholeLineRanges(
