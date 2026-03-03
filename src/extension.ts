@@ -127,7 +127,7 @@ function expandToWholeLineRanges(
 	for (const blockRange of blockRanges) {
 		if (blockRange.start.line === blockRange.end.line) continue // we don't yet support single-line jsdocs
 
-		const offset = includeDelimiterLines ? 1 : 0
+		const offset = includeDelimiterLines ? 0 : 1
 
 		const firstContentLine = blockRange.start.line + offset
 		const lastContentLine = blockRange.end.line - offset
