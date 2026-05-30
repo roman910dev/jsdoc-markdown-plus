@@ -90,7 +90,11 @@ function createDecorationType(): vscode.TextEditorDecorationType {
 	)
 
 	const options: vscode.DecorationRenderOptions = { isWholeLine: true }
-	if (backgroundColor) options.backgroundColor = backgroundColor
+
+	options.backgroundColor =
+		backgroundColor ? backgroundColor : (
+			new vscode.ThemeColor('editor.foldBackground')
+		)
 
 	return vscode.window.createTextEditorDecorationType(options)
 }
@@ -141,30 +145,30 @@ function expandToWholeLineRanges(
 }
 
 function findJSDocRanges(document: vscode.TextDocument): vscode.Range[] {
-	const text = document.getText()
 	const ranges: vscode.Range[] = []
 
-	let cursor = 0
-	while (cursor < text.length) {
-		const start = text.indexOf('/**', cursor)
-		if (start === -1) break
+	let startLine: number | undefined
 
-		if (start > 0) {
-			const previous = text[start - 1]
-			if (previous === '"' || previous === "'" || previous === '`') {
-				cursor = start + 3
-				continue
+	for (let line = 0; line < document.lineCount; line += 1) {
+		const text = document.lineAt(line).text
+
+		if (startLine === undefined) {
+			if (/^\s*\/\*\*(?!\/)/.test(text)) {
+				startLine = line
+
+				// Keep current behavior: skip single-line JSDoc background.
+				if (text.includes('*/')) startLine = undefined
 			}
+
+			continue
 		}
 
-		const endToken = text.indexOf('*/', start + 3)
-		if (endToken === -1) break
-
-		const startPos = document.positionAt(start)
-		const endPos = document.positionAt(endToken + 2)
-		ranges.push(new vscode.Range(startPos, endPos))
-
-		cursor = endToken + 2
+		if (text.includes('*/')) {
+			const start = new vscode.Position(startLine, 0)
+			const end = new vscode.Position(line, text.length)
+			ranges.push(new vscode.Range(start, end))
+			startLine = undefined
+		}
 	}
 
 	return ranges
