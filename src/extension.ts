@@ -90,7 +90,11 @@ function createDecorationType(): vscode.TextEditorDecorationType {
 	)
 
 	const options: vscode.DecorationRenderOptions = { isWholeLine: true }
-	if (backgroundColor) options.backgroundColor = backgroundColor
+
+	options.backgroundColor =
+		backgroundColor ? backgroundColor : (
+			new vscode.ThemeColor('editor.foldBackground')
+		)
 
 	return vscode.window.createTextEditorDecorationType(options)
 }
