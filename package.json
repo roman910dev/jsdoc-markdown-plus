@@ -52,9 +52,9 @@
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.85.0",
-		"@vscode/vsce": "^3.7.1",
-		"prettier": "^3.8.1",
-		"typescript": "^5.4.0"
+		"@vscode/vsce": "^3.9.1",
+		"prettier": "^3.8.3",
+		"typescript": "^6.0.3"
 	},
 	"contributes": {
 		"grammars": [
