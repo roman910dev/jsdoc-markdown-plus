@@ -53,6 +53,7 @@
 	"devDependencies": {
 		"@types/vscode": "^1.85.0",
 		"@vscode/vsce": "^3.9.1",
+		"ovsx": "^1.0.0",
 		"prettier": "^3.8.3",
 		"typescript": "^6.0.3"
 	},
@@ -78,13 +79,18 @@
 		"configuration": {
 			"title": "JSDoc Markdown Plus",
 			"properties": {
+				"jsdocMarkdownPlus.backgroundEnabled": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable the background for JSDoc blocks."
+				},
 				"jsdocMarkdownPlus.backgroundColor": {
 					"type": [
 						"string",
 						"null"
 					],
 					"default": null,
-					"description": "Background color for JSDoc blocks. Set to null or empty string to disable background."
+					"description": "Custom background color for JSDoc blocks. Set to null or empty string to use the default theme-aware background."
 				},
 				"jsdocMarkdownPlus.backgroundIncludeDelimiterLines": {
 					"type": "boolean",

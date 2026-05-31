@@ -12,31 +12,23 @@ jobs:
     publish:
         runs-on: ubuntu-latest
 
+        env:
+            FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
-
-            - name: Setup Node
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 24
+              uses: actions/checkout@v6
 
             - name: Setup pnpm
-              uses: pnpm/action-setup@v3
+              uses: pnpm/action-setup@v6
               with:
                   version: 10
 
-            - name: Get pnpm store directory
-              id: pnpm-cache
-              run: echo "store-path=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-            - name: Cache pnpm store
-              uses: actions/cache@v4
+            - name: Setup Node
+              uses: actions/setup-node@v6
               with:
-                  path: ${{ steps.pnpm-cache.outputs.store-path }}
-                  key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-                  restore-keys: |
-                      ${{ runner.os }}-pnpm-
+                  node-version: 24
+                  cache: pnpm
 
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
@@ -44,24 +36,11 @@ jobs:
             - name: Build
               run: pnpm run build
 
-            # Package once
             - name: Package extension
-              id: package
-              uses: HaaLeo/publish-vscode-extension@v2
-              with:
-                  pat: 'dry-run'
-                  dryRun: true
+              run: pnpm exec vsce package --out extension.vsix
 
             - name: Publish to VS Code Marketplace
-              uses: HaaLeo/publish-vscode-extension@v2
-              with:
-                  pat: ${{ secrets.VSCE_PAT }}
-                  registryUrl: https://marketplace.visualstudio.com
-                  extensionFile: ${{ steps.package.outputs.vsixPath }}
+              run: pnpm exec vsce publish --packagePath extension.vsix --pat ${{ secrets.VSCE_PAT }}
 
             - name: Publish to Open VSX
-              uses: HaaLeo/publish-vscode-extension@v2
-              with:
-                  pat: ${{ secrets.OVSX_TOKEN }}
-                  registryUrl: https://open-vsx.org
-                  extensionFile: ${{ steps.package.outputs.vsixPath }}
+              run: pnpm exec ovsx publish extension.vsix --pat ${{ secrets.OVSX_TOKEN }}
