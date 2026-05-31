@@ -85,16 +85,18 @@ export function activate(context: vscode.ExtensionContext): void {
 
 function createDecorationType(): vscode.TextEditorDecorationType {
 	const config = vscode.workspace.getConfiguration(CONFIG_NAMESPACE)
+	const backgroundEnabled = config.get<boolean>('backgroundEnabled', true)
 	const backgroundColor = normalizeString(
 		config.get<string | null>('backgroundColor'),
 	)
 
 	const options: vscode.DecorationRenderOptions = { isWholeLine: true }
 
-	options.backgroundColor =
-		backgroundColor ? backgroundColor : (
-			new vscode.ThemeColor('editor.foldBackground')
-		)
+	if (backgroundEnabled)
+		options.backgroundColor =
+			backgroundColor ? backgroundColor : (
+				new vscode.ThemeColor('editor.foldBackground')
+			)
 
 	return vscode.window.createTextEditorDecorationType(options)
 }
